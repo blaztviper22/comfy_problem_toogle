@@ -9,8 +9,12 @@ const themes = {
     dracula : 'dracula'
 };
 
+const getThemefromLocalStorage = () => {
+    return localStorage.getItem('theme') || themes.winter
+}
+
 const Navbar = () => {
-    const [theme, setTheme] = useState(themes.winter);
+    const [theme, setTheme] = useState(getThemefromLocalStorage());
     const handleTheme = () => {
         const { winter, dracula } = themes;
         const newTheme = theme === winter ? dracula : winter;
@@ -50,7 +54,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 {/* THEME SETUP */}
-                <label htmlFor="" className="swap swap-rotate">
+                <label className="swap swap-rotate">
                     <input type="checkbox" onChange={handleTheme} />
                     {/* sun */}
                     <BsSunFill className='swap-on h-4 w-4' />
