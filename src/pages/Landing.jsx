@@ -8,7 +8,7 @@ export const loader = async () => {
     const response = await customFetch(url);
     const products = response.data.data;
 
-    console.log(response);
+    //console.log(response);
     return {products};
 };
 
