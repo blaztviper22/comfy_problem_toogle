@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { FormsInput, SubmitBtn } from "../Components";
+import { FormInput, SubmitBtn } from "../Components";
 import { Form, Link } from 'react-router-dom';
 
 const Login = () => {
@@ -7,8 +7,8 @@ const Login = () => {
         <section className="h-screen grid place-items-center">
             <Form method="post" className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-4">
                 <h4 className="text-center text-3xl font-bold">Login</h4>
-                <FormsInput type='email' label='email' name='identifier' defaultvalue='test@test.com' />
-                <FormsInput type='password' label='password' name='password' defaultvalue='secret' />
+                <FormInput type='email' label='email' name='identifier' defaultvalue='test@test.com' />
+                <FormInput type='password' label='password' name='password' defaultvalue='secret' />
                 <div className="mt-4">
                     <SubmitBtn text='Login' />
                 </div>
