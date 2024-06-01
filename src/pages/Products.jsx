@@ -6,11 +6,19 @@ import { customFetch } from "../utils";
 /* eslint-disable no-unused-vars */
 const url = '/products';
 export const loader = async ({ request }) => {
-    const response  = await customFetch(url);
+    //for filtering data
+    //console.log(request);
+    const params = Object.fromEntries([
+        ...new URL(request.url).searchParams.entries() // see thunder client for api's
+    ]);
+    //console.log(params);
+
+    //for loader data
+    const response  = await customFetch(url,{params}); //just put the filtering params api here!
     const products = response.data.data;
     const meta = response.data.meta;
-    console.log(response);
-    return { products, meta };
+    //console.log(response);
+    return { products, meta, params }; //return the params to fetch using useLoadData!!
 };
 
 const Products = () => {
