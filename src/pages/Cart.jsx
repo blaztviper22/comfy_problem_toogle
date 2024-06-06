@@ -5,8 +5,7 @@ import { Link } from 'react-router-dom';
 
 
 const Cart = () => {
-    // temp
-    const user = null;
+    const user = useSelector(state => state.userState.user);
     const numItemsInCart = useSelector((state) => state.cartState.numItemsInCart)
 
     if(numItemsInCart === 0){
@@ -17,7 +16,7 @@ const Cart = () => {
     return (
         <>
             <SectionTitle text='Shopping cart' />
-            <div className="mt-8 grid gap-8 lg: grid-cols-12">
+            <div className="mt-8 grid gap-8 lg:grid-cols-12">
                 <div className="lg:col-span-8">
                     <CartItemsList />
                 </div>
