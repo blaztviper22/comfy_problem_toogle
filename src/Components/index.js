@@ -14,3 +14,4 @@ export { default as ProductList } from './ProductList';
 export { default as Loading } from './Loading';
 export { default as Cartotals } from './CartTotals';
 export { default as CartItemsList } from './CartItemsList';
+export { default as CartItem } from './CartItem';
