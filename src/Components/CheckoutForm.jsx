@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-condition */
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-unused-vars */
 import { Form, redirect } from 'react-router-dom';
@@ -30,11 +31,17 @@ export const action =
           Authorization: `Bearer ${user.token}`, 
         },
       });
-      return null;
+      store.dispatch(clearCart());
+      toast.success('order placed successfully')
+      //console.log(response)
+      return redirect('/orders');
     } catch (error) {
-      console.log(error);
+      const errorMessage = error?.response?.data?.error?.message || 'there was an error placing your order';
+      toast.error(errorMessage);
+      if(error.response.status === 401 || 403) return redirect('/login');
+      return null;
+      //console.log(error);
     }
-    return null;
   }
 
 const CheckoutForm = () => {
