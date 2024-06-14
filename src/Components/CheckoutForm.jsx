@@ -9,9 +9,32 @@ import { clearCart } from '../features/cart/cartSlice';
 
 export const action = 
   store => 
-  async () => {
-    console.log(store);
-    return null
+  async ({request}) => {
+    const formData = await request.formData();
+    const { name, address } = Object.fromEntries(formData);
+    const user = store.getState().userState.user;
+    const { cartItems, orderTotal, numItemsInCart } = store.getState().cartState;
+
+    const info = {
+      name,
+      address,
+      chargeTotal:orderTotal,
+      orderTotal:formatPrice(orderTotal),
+      cartItems,
+      numItemsInCart,
+    }
+
+    try {
+      const response = await customFetch.post('/orders', { data:info },{
+        headers: {
+          Authorization: `Bearer ${user.token}`, 
+        },
+      });
+      return null;
+    } catch (error) {
+      console.log(error);
+    }
+    return null;
   }
 
 const CheckoutForm = () => {
