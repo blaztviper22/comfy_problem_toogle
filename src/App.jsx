@@ -20,9 +20,11 @@ import { ErrorElement } from './Components';
 import { loader as landingLoader } from './pages/Landing';
 import { loader as SingleProductLoader } from './pages/SingleProduct';
 import { loader as ProducstLoader } from './pages/Products';
+import { loader as checkoutLoader } from './pages/Checkout';
 // actions
 import { action as RegisterAction } from './pages/Register';
 import { action as LoginAction } from './pages/Login';
+import  { action as checkoutAction } from './Components/CheckoutForm';
 
 import { store } from './store';
 
@@ -57,7 +59,9 @@ const router = createBrowserRouter([
       },
       {
         path: 'checkout',
-        element: <Checkout />
+        element: <Checkout />,
+        loader: checkoutLoader(store),
+        action: checkoutAction(store)
       },
       {
         path: 'orders',

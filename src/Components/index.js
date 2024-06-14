@@ -15,3 +15,4 @@ export { default as Loading } from './Loading';
 export { default as Cartotals } from './CartTotals';
 export { default as CartItemsList } from './CartItemsList';
 export { default as CartItem } from './CartItem';
+export { default as CheckoutForm } from './CheckoutForm';
