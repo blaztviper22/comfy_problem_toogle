@@ -16,3 +16,4 @@ export { default as Cartotals } from './CartTotals';
 export { default as CartItemsList } from './CartItemsList';
 export { default as CartItem } from './CartItem';
 export { default as CheckoutForm } from './CheckoutForm';
+export { default as Orderlist } from './Orderlist';
