@@ -10,7 +10,7 @@ const Orderlist = () => {
     <div className="mt-8">
       <div className="mb-4 capitalized">
         total orders: {meta.pagination.total}
-        {console.log(meta)}
+        {/* {console.log(meta)} */}
       </div>
       <div className="overflow-x-auto">
         <table className="table table-zebra">

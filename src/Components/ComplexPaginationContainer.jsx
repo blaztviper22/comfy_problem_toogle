@@ -20,7 +20,7 @@ const ComplexPaginationContainer = () => {
             onClick={() => handlePageChange(pageNumber)} 
             className={`
              btn btn-xs sm:btn-md border-none join-item 
-             ${pageNumber === page ? 'bg-base-300 border-base-300' : ''}
+             ${ activeClass ? 'bg-base-300 border-base-300' : ''}
             `}
         >
             {pageNumber}
@@ -30,32 +30,36 @@ const ComplexPaginationContainer = () => {
     const renderPageButtons = () => {
         const pageButtons = [];
         //first button
-        pageButtons.push(addPageButton({pageNumber:1, activeClass: page === 1}));
+        pageButtons.push(addPageButton({ pageNumber:1, activeClass: page === 1 }));
 
         //dots
-        pageButtons.push(
+        if(page > 2){
+          pageButtons.push(
             <button className="join-item btn btn-xs sm:btn-md" key='dots-1'>
                 ...
             </button>
-        )
+          )
+        }
 
         //active/current page
         if(page !== 1 && page !== pageCount){
             pageButtons.push(
-                addPageButton({pageNumber: page, activeClass: true})
+                addPageButton({ pageNumber: page, activeClass: true })
             )
         }
 
         //dots
-        pageButtons.push(
+        if(page < pageCount - 1){
+          pageButtons.push(
             <button className="join-item btn btn-xs sm:btn-md" key='dots-2'>
                 ...
             </button>
-        )
+          )
+        }
 
         //last button
         pageButtons.push(
-            addPageButton({pageNumber: pageCount, activeClass: page === pageCount})
+            addPageButton({ pageNumber: pageCount, activeClass: page === pageCount })
         )
         return pageButtons;
     }
@@ -78,8 +82,9 @@ const ComplexPaginationContainer = () => {
         <button className="btn btn-xs sm:btn-md join-item" 
           onClick={() => {
             let nextPage = page + 1;
-            if(nextPage > 1) nextPage = 1;
+            if(nextPage > pageCount) nextPage = 1;
             handlePageChange(nextPage);
+            console.log(nextPage)
         }}
         >
           Next
