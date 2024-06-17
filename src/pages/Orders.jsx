@@ -4,13 +4,13 @@
 import { redirect, useLoaderData } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { customFetch } from '../utils';
-import { Orderlist, PaginationContainer, SectionTitle } from '../Components';
+import { ComplexPaginationContainer, Orderlist, SectionTitle } from '../Components';
 
 export const loader = 
 (store) => 
 async({request}) => {
     //console.log(store);
-    const user = store.getState().user;
+    const user = store.getState().userState.user;
     
     //restrict access in orders
     if (!user) {
@@ -29,8 +29,8 @@ async({request}) => {
         });
         //console.log(response)
         return {
-            order: response.data.data,
-            meta: response.data.meta //resuable in orders page
+            orders: response.data.data,
+            meta: response.data.meta //resuable both in orders page
         };
     } catch(error) {
         console.log(error);
@@ -54,7 +54,7 @@ const Orders = () => {
         <>
             <SectionTitle text='Your Oders' />
             <Orderlist />
-            <PaginationContainer />
+            <ComplexPaginationContainer />
         </>
     )
 };
