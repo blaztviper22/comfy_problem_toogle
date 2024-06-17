@@ -5,7 +5,8 @@ import { customFetch } from "../utils";
 
 /* eslint-disable no-unused-vars */
 const url = '/products';
-export const loader = async ({ request }) => {
+export const loader = (queryClient) =>
+async ({ request }) => {
     //for filtering data
     //console.log(request);
     const params = Object.fromEntries([

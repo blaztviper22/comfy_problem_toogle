@@ -4,8 +4,14 @@ import { customFetch } from "../utils";
 
 const url = '/products?featured=true';
 
-export const loader = async () => {
-    const response = await customFetch(url);
+const FeaturedProductsQuery = {
+    queryKey:['featuredProducts'],
+    queryFn: () => customFetch(url)
+}
+
+export const loader = (queryClient) => async () => {
+    const response = await queryClient.ensureQueryData(FeaturedProductsQuery);
+    //console.log(response); check the useage of react query here
     const products = response.data.data;
 
     //console.log(response);
